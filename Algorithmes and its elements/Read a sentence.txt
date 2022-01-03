@@ -1,0 +1,26 @@
+Procedure ReadSentence(ch:string) 
+var:
+	nb_espace,nb_carac,nb_vow,nb_word,i : integer
+begin:
+	nb_espace <- 0
+	nb_carac <- 0
+	nb_voyelle <-0
+	nb_word <- 0
+	read(ch)
+	for(i=0;ch.length;i++)
+	{
+		c <- ch.charAt[i];
+		while(c <> ".")
+			nb_carac ++
+		if (c = " ")
+			nb_espace ++
+		if (c = "e") or (c = "a") or (c = "i") or (c = "o") or (c = "u") 
+			nb_vow ++
+		nb_word <- nb_espace + 1
+	}
+	write("The length of this string is ",nb_carac)
+	write("The number of spaces of this string is ",nb_espace)
+	write("The number of vowels of this string is ",nb_vow)
+	write("The number of words of this string is ",nb_word)
+end.
+
