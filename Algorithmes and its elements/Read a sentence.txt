@@ -1,7 +1,8 @@
-Procedure ReadSentence(ch:string) 
-var:
-	nb_espace,nb_carac,nb_vow,nb_word,i : integer
-begin:
+ALGORITHM ReadSentence
+VAR
+	nb_espace,nb_carac,nb_vow,nb_word,i : integer;
+	ch : string;
+BEGIN
 	nb_espace <- 0
 	nb_carac <- 0
 	nb_voyelle <-0
@@ -22,5 +23,5 @@ begin:
 	write("The number of spaces of this string is ",nb_espace)
 	write("The number of vowels of this string is ",nb_vow)
 	write("The number of words of this string is ",nb_word)
-end.
+END.
 
