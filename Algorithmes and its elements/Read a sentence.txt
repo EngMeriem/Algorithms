@@ -1,27 +1,27 @@
 ALGORITHM ReadSentence
 VAR
-	nb_espace,nb_carac,nb_vow,nb_word,i : integer;
-	ch : string;
+	nb_espace,nb_carac,nb_vow,nb_word,i : INTEGER;
+	ch : String;
 BEGIN
-	nb_espace <- 0
-	nb_carac <- 0
-	nb_voyelle <-0
-	nb_word <- 0
-	read(ch)
-	for(i=0;ch.length;i++)
-	{
-		c <- ch.charAt[i];
-		while(c <> ".")
-			nb_carac ++
-		if (c = " ")
-			nb_espace ++
-		if (c = "e") or (c = "a") or (c = "i") or (c = "o") or (c = "u") 
-			nb_vow ++
-		nb_word <- nb_espace + 1
-	}
-	write("The length of this string is ",nb_carac)
-	write("The number of spaces of this string is ",nb_espace)
-	write("The number of vowels of this string is ",nb_vow)
-	write("The number of words of this string is ",nb_word)
+	nb_espace := 0;
+	nb_carac := 0;
+	nb_voyelle :=0;
+	nb_word := 0;
+	Read(ch);
+	FOR i FROM 0 TO (ch.length)-1 DO
+		c := ch.charAt[i];
+		WHILE(c <> ".") DO
+			nb_carac ++;
+		IF (c = " ") THEN
+			nb_espace ++;
+		END_IF
+		IF ((c = "e") || (c = "a") || (c = "i") || (c = "o") || (c = "u")) THEN
+			nb_vow ++;
+		nb_word := nb_espace + 1;
+		END_IF
+	END_FOR
+	Write("The length of this string is ",nb_carac);
+	Write("The number of spaces of this string is ",nb_espace);
+	Write("The number of vowels of this string is ",nb_vow);
+	Write("The number of words of this string is ",nb_word);
 END.
-
