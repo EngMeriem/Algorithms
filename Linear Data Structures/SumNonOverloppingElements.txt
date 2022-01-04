@@ -1,0 +1,98 @@
+===================================================
+******************* Solution 1 ********************
+===================================================
+
+ALGORITHME SumNonOverloppingElements
+VAR
+	set1,set2: ARRAY_OF INTEGER[5];
+	i,j,sum: INTEGER;
+	found : BOOLEAN;
+BEGIN 
+	FOR i FROM 0 TO 4 DO
+		// insert two arrays from user
+       		Read(set1[i]);
+		Read(set2[i]);
+   	END_FOR
+	FOR i FROM 0 TO 4 DO
+		found:=false;sum:=0;
+		FOR j FROM 0 TO 4 DO
+			IF (set1[i] = set2[j]) THEN
+				found:=true;
+				break;
+			END_IF
+		END_FOR
+		IF(found = false) THEN
+			sum := sum + set1[i];
+		END_IF
+	END_FOR
+
+	FOR i FROM 0 TO 4 DO
+		found:=false;
+		FOR j FROM 0 TO 4 DO
+			IF (set2[i] = set1[j]) THEN
+				found:=true;
+				break;
+			END_IF
+		END_FOR
+		IF(found = false) THEN
+			sum := sum + set2[i];
+		END_IF
+	END_FOR
+	Write("The sum of non-overlopping elements is : ",sum);
+END.
+
+===================================================
+
+******************* Solution 2 ********************
+===================================================
+
+
+ALGORITHME SumNonOverloppingElements
+VAR
+	set1,set2: ARRAY_OF INTEGER[5];
+	htab: HASH_TABLE <INTEGER,INTEGER>
+	i,j,sum,element,key,count: INTEGER;
+	found : BOOLEAN;
+BEGIN 
+	FOR i FROM 0 TO 4 STEP 1 DO
+		// insert two arrays from user
+       		Read(set1[i]);
+		Read(set2[i]);
+   	END_FOR			
+	FOR i FROM 0 TO 4 STEP 1 DO
+            	element = set1[i];
+            	IF(htab.containsKey(element)) THEN
+                	count = htab.get(element);
+                	htab.put(element, count+1);
+            	ELSE
+                	htab.put(element, 1);
+	
+        	END_IF
+	END_FOR
+
+        FOR i FROM 0 TO 4 STEP 1 DO
+            	element = set2[i];
+            	IF (htab.containsKey(element)) THEN
+                	count = htab.get(element);
+                	htab.put(element, count+1);
+            	ELSE
+                	htab.put(element, 1);
+		END_IF
+        END_FOR
+
+        //get sum of distinct elements
+        sum = 0;
+        Set<Integer> set = htab.keySet();
+        Iterator<Integer> iterator = set.iterator();
+        WHILE (iterator.hasNext()) DO
+            	key = iterator.next();
+            	IF(htab.get(key)==1)THEN
+                	sum += key;
+		END_IF
+	END_WHILE
+
+	Write("The sum of non-overlopping elements is : ",sum);
+
+END.
+        	
+		
