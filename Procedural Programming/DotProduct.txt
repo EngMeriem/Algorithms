@@ -1,0 +1,65 @@
+=======================================================================================
+******************************ALGORITHM WITH PROCEDURE*********************************
+=======================================================================================
+
+PROCEDURE dot_product(v1,v2: TYPE_OF INTEGER)
+VAR
+	dotprod,i : INTEGER;
+BEGIN
+	IF (v1.length != v2.length)THEN
+        	Write ("can't find dot product: arrays have different lengths");
+	END_IF
+    	dotprod = 0;
+    	FOR i FROM 0 TO (v1.length)-1 DO
+        	dotprod += v1[i] * v2[i];
+	END_FOR
+END
+
+ALGORITHME Dot_product
+VAR
+	v1,v2,vProdScalair : TYPE OF INTEGER [20];
+	n,i : INTEGER;
+BEGIN 
+	READ(n);
+	FOR i FROM 0 TO n-1 DO
+		WHILE (dot_product(v1,v2)<>0) DO
+        		vProdScalair[i] := dot_product(v1,v2)
+			i++;
+		END_WHILE
+	END_FOR
+	
+END.
+
+=======================================================================================
+******************ALGORITHM WITH FUNCTION INSTEAD OF PROCEDURE*************************
+=======================================================================================
+FUNCTION dot_product (v1, v2 : TYPE_OF INTEGER) : INTEGER
+VAR
+BEGIN
+    	IF (v1.length != v2.length)THEN
+        	Write ("can't find dot product: arrays have different lengths");
+	END_IF
+    	dotprod = 0;
+    	FOR i FROM 0 TO (v1.length)-1 DO
+        	dotprod += v1[i] * v2[i];
+	END_FOR
+	RETURN dotprod;
+END.
+
+
+ALGORITHME Dot_product
+VAR
+	v1,v2,vProdScalair : TYPE OF INTEGER [20];
+	n,dotproduct : INTEGER;
+BEGIN 
+	READ(n);
+	dotproduct := dot_product(v1,v2);
+	FOR i FROM 0 TO n-1 DO
+		FOR j FROM 0 TO v1.length-1 DO
+			READ(v1[j],v2[j]);
+		END_FOR
+        	vProdScalair[i] += dotproduct
+	END_FOR
+	
+END.
+ 
