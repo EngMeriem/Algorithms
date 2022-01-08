@@ -2,6 +2,17 @@
 ******************************ALGORITHM WITH PROCEDURE*********************************
 =======================================================================================
 
+PROCEDURE fill_vector(Var v:TYPE_OF INTEGER);
+VAR
+   i:  INTEGER;
+BEGIN
+   FOR i FROM 1 TO 10 PATH 1 Do
+      BEGIN
+         Write('donner l''élement n°',i,'= ');
+         Read(v[i]);
+      END;
+END;
+
 PROCEDURE dot_product(v1,v2: TYPE_OF INTEGER)
 VAR
 	dotprod,i : INTEGER;
@@ -10,22 +21,29 @@ BEGIN
         	Write ("can't find dot product: arrays have different lengths");
 	END_IF
     	dotprod = 0;
-    	FOR i FROM 0 TO (v1.length)-1 DO
+    	FOR i FROM 0 TO v1.length-1 DO
         	dotprod += v1[i] * v2[i];
 	END_FOR
-END
+	Write("The dot product of v1 and v2 is ",dotprod);
+END;
 
 ALGORITHME Dot_product
 VAR
-	v1,v2,vProdScalair : TYPE OF INTEGER [20];
+	v1,v2 : TYPE OF INTEGER [10];
 	n,i : INTEGER;
+	orthogonal : BOOLEAN;
 BEGIN 
 	READ(n);
-	FOR i FROM 0 TO n-1 DO
-		WHILE (dot_product(v1,v2)<>0) DO
-        		vProdScalair[i] := dot_product(v1,v2)
-			i++;
-		END_WHILE
+	FOR i FROM 1 TO n DO
+		BEGIN
+			fill_vector(v1);
+			fill_vector(v2);
+			orthogonal := False;
+			WHILE (dot_product(v1,v2) = 0) DO
+        			orthogonal := True;
+				i++;
+			END_WHILE;
+		END;
 	END_FOR
 	
 END.
@@ -33,6 +51,17 @@ END.
 =======================================================================================
 ******************ALGORITHM WITH FUNCTION INSTEAD OF PROCEDURE*************************
 =======================================================================================
+PROCEDURE fill_vector(Var v:TYPE_OF INTEGER);
+VAR
+   i:  INTEGER;
+BEGIN
+   FOR i FROM 1 TO 10 PATH 1 Do
+      BEGIN
+         Write('donner l''élement n°',i,'= ');
+         Read(v[i]);
+      END;
+END;
+
 FUNCTION dot_product (v1, v2 : TYPE_OF INTEGER) : INTEGER
 VAR
 BEGIN
@@ -40,7 +69,7 @@ BEGIN
         	Write ("can't find dot product: arrays have different lengths");
 	END_IF
     	dotprod = 0;
-    	FOR i FROM 0 TO (v1.length)-1 DO
+    	FOR i FROM 0 TO 1v1.length-1 DO
         	dotprod += v1[i] * v2[i];
 	END_FOR
 	RETURN dotprod;
@@ -49,17 +78,22 @@ END.
 
 ALGORITHME Dot_product
 VAR
-	v1,v2,vProdScalair : TYPE OF INTEGER [20];
-	n,dotproduct : INTEGER;
+	v1,v2,vProdScalair : TYPE OF INTEGER [10];
+	n,dp : INTEGER;
 BEGIN 
 	READ(n);
-	dotproduct := dot_product(v1,v2);
-	FOR i FROM 0 TO n-1 DO
-		FOR j FROM 0 TO v1.length-1 DO
-			READ(v1[j],v2[j]);
-		END_FOR
-        	vProdScalair[i] += dotproduct
+	
+	FOR i FROM 1 TO n DO
+		BEGIN
+			fill_vector(v1);
+			fill_vector(v2);
+			orthogonal := False;
+			dp := dot_product(v1,v2);
+			WHILE (dp = 0) DO
+        			orthogonal := True;
+				i++;
+			END_WHILE;
+		END;
 	END_FOR
 	
 END.
- 
